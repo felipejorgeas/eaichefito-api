@@ -11,18 +11,17 @@
 # Description:       Ativa o server.js do eaichefito-api.
 ### END INIT INFO
 
-
 # Exporta o diretorio do binario e dos modulos NodeJs.
 export PATH=$PATH:/usr/local/bin
 export NODE_PATH=$PATH:/opt/mean/node_modules
 NODE_ENVIROMENT=production
 
 # Define os dados do arquivo auxiliar para armazenar o pid do processo.
-SERVER=eacchefito-api
+SERVER=eaichefito-api
 PID_FILE=/var/run/$SERVER.pid
 
 # Diretorio de instalacao do Nerus App API.
-DIR=/var/www/$SERVER
+DIR=/var/www/html/$SERVER
 
 start() {
     export NODE_ENV=$NODE_ENVIROMENT
