@@ -1,26 +1,30 @@
-module.exports = function (models) {
+module.exports = function (utils, models) {
     var Recipe = {
         find: function (req, res) {
+            utils.startTimeResponse();
             models.Recipe.find({}, function (err, result) {
                 if (err) {
-                    return res.send(err);
+                    return res.status(500).send(utils.setResponseError(err));
                 }
-                return res.send(result);
+                return res.send(utils.setResponseSuccess(result));
             });
         },
         save: function (req, res) {
-            var recipes = req.body;
+            utils.startTimeResponse();
             try {
+                var recipes = req.body.recipes;
                 if (recipes.length) {
                     models.Recipe.insertMany(recipes, function (err, result) {
                         if (err) {
-                            return res.send(err);
+                            return res.status(500).send(utils.setResponseError(err));
                         }
-                        return res.send(result);
+                        return res.send(utils.setResponseSuccess(result));
                     });
+                } else {
+                    return res.status(400).send(utils.setResponseError({error: 'Requisição com dados inválidos'}));
                 }
             } catch (ex) {
-                return res.status(400).send({error: 'Requisição com dados inválidos'});
+                return res.status(400).send(utils.setResponseError({error: 'Requisição com dados inválidos'}));
             }
         }
     };
