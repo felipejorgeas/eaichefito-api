@@ -1,0 +1,20 @@
+{
+    "name": "eaichefito-api",
+    "version": "1.0.0",
+    "description": "",
+    "author": "Team E ai Chefito",
+    "main": "server.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/felipejorgeas/eaichefito-api.git"
+    },
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "bunyan": "^1.8.1",
+        "compression": "^1.6.2",
+        "express": "^4.14.0",
+        "mongoose": "^4.6.1",
+        "request": "^2.75.0"
+    }
+}
