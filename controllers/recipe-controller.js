@@ -2,7 +2,19 @@ module.exports = function (utils, models) {
     var Recipe = {
         find: function (req, res) {
             utils.startTimeResponse();
-            models.Recipe.find({}, '_id title image time', function (err, result) {
+            var search = req.query.search.split(" ");
+            var where = {
+                $text: {
+                    $search: '\"' + search.join('\" \"') + '\"'
+                }
+            };
+            var score = {
+                score: {
+                    $meta: "textScore"
+                }
+            };
+            var sort = score;
+            models.Recipe.find(where, score).sort(sort).select('_id title image time').exec(function (err, result) {
                 if (err) {
                     return res.status(500).send(utils.setResponseError(err));
                 }
