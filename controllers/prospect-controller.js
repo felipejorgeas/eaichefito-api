@@ -3,9 +3,9 @@ module.exports = function (utils, models) {
         save: function (req, res) {
             utils.startTimeResponse();
             try {
-                var email = req.body;
-                if (email.length) {
-                    models.Prospect.update({ email: email }, {email: email}, { upsert: true }, function (err, result) {
+                var prospect = req.body;
+                if (prospect.email.length) {
+                    models.Prospect.update({email: prospect.email}, prospect, {upsert: true}, function (err, result) {
                         if (err) {
                             return res.status(500).send(utils.setResponseError(err));
                         }
