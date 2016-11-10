@@ -3,8 +3,9 @@ module.exports = function (utils, models) {
         save: function (req, res) {
             utils.startTimeResponse();
             try {
+                console.log(req.body.tester);
                 var tester = req.body.tester;
-                if (tester.fbid) {
+                if (tester.fbid > 0) {
                     models.Tester.update({ fbid: tester.fbid }, tester, { upsert: true }, function (err, result) {
                         if (err) {
                             return res.status(500).send(utils.setResponseError(err));
