@@ -5,7 +5,7 @@ module.exports = function (utils, models) {
             try {
                 var tester = req.body.tester;
                 if (tester.fbid) {
-                    models.Tester.insert(tester, function (err, result) {
+                    models.Tester.update({ fbid: tester.fbid }, tester, { upsert: true }, function (err, result) {
                         if (err) {
                             return res.status(500).send(utils.setResponseError(err));
                         }
