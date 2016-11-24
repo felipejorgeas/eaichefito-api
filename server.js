@@ -13,6 +13,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://45.55.234.250/eaichefitodb');
 
 var apiName = '/eaichefito/api';
+var port = 2000;
 
 var app = express();
 var db = mongoose.connection;
@@ -35,8 +36,8 @@ db.once('open', function () {
     var controllers = require(__dirname + '/controllers.js')(utils, models);
     require(__dirname + '/routes.js')(app, apiName, controllers);
 
-    app.listen(2000, function () {
-        var startMessage = utils.sprintf('E aí Chefito API v%s escutando na porta %s - %s', appData.version, 2000, (new Date()));
+    app.listen(port, function () {
+        var startMessage = utils.sprintf('E aí Chefito API v%s escutando na porta %s - %s', appData.version, port, (new Date()));
         console.log(startMessage);
     });
 });

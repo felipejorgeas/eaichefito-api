@@ -3,10 +3,10 @@ module.exports = function (utils, models) {
         find: function (req, res) {
             utils.startTimeResponse();
             var search = req.query.search.replace(/  /g, ' ').split(" ");
-            var separate = req.query.separate;
+            var separated = req.query.separated;
             var rand = req.query.rand;
             var limit = req.query.limit;
-            if(separate){
+            if(separated){
                 var where = {
                     $text: {
                         $search: search.join(' ')
