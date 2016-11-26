@@ -1,5 +1,14 @@
 module.exports = function (utils, models, gcm) {
     var Order = {
+        find: function (req, res) {
+            utils.startTimeResponse();
+            models.Order.find({}).exec(function (err, result) {
+                if (err) {
+                    return res.status(500).send(utils.setResponseError(err));
+                }
+                return res.send(utils.setResponseSuccess(result));
+            });
+        },
         save: function (req, res) {
             utils.startTimeResponse();
             try {
