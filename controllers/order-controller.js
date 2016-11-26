@@ -14,6 +14,7 @@ module.exports = function (utils, models, gcm) {
             try {
                 var order = req.body;
                 if (order.info.length) {
+                    order.date = new Date();
                     models.Order.update({info: order.info}, order, {upsert: true}, function (err, result) {
                         if (err) {
                             return res.status(500).send(utils.setResponseError(err));
