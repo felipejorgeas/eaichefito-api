@@ -6,6 +6,7 @@ var express = require('express'),
         request = require('request'),
         compression = require('compression'),
         bunyan = require('bunyan'),
+        gcm = require('node-gcm'),
         appData = require(__dirname + '/package.json'),
         utils = require(__dirname + '/lib/utils.js')(appData);
 
@@ -33,7 +34,7 @@ db.once('open', function () {
     });
 
     var models = require(__dirname + '/models.js')(mongoose);
-    var controllers = require(__dirname + '/controllers.js')(utils, models);
+    var controllers = require(__dirname + '/controllers.js')(utils, models, gcm);
     require(__dirname + '/routes.js')(app, apiName, controllers);
 
     app.listen(port, function () {
