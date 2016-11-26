@@ -23,7 +23,7 @@ module.exports = function (utils, models, gcm) {
                                 });
 
                                 message.addData('title', 'E aí, Chefito?');
-                                message.addData('message', 'Novo pedido!');
+                                message.addData('message', 'Novo pedido! ' + order.info);
                                 message.addData('ledColor', [255, 255, 255, 255]);
                                 message.addData('style', 'inbox');
                                 message.addData('summaryText', '%n% pedidos');
