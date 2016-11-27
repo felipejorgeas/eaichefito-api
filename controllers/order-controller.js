@@ -2,7 +2,7 @@ module.exports = function (utils, models, gcm) {
     var Order = {
         find: function (req, res) {
             utils.startTimeResponse();
-            models.Order.find({}).exec(function (err, result) {
+            models.Order.find({}).sort({date: -1}).exec(function (err, result) {
                 if (err) {
                     return res.status(500).send(utils.setResponseError(err));
                 }
