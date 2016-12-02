@@ -2,7 +2,7 @@ module.exports = function (utils, models, gcm) {
     var Order = {
         find: function (req, res) {
             utils.startTimeResponse();
-            models.Order.find({}).sort({date: -1}).exec(function (err, result) {
+            models.Order.find({}).sort('-date').exec(function (err, result) {
                 if (err) {
                     return res.status(500).send(utils.setResponseError(err));
                 }
@@ -13,7 +13,7 @@ module.exports = function (utils, models, gcm) {
             utils.startTimeResponse();
             try {
                 var order = req.body;
-                if (order.info.length) {
+                if (order.info.length || order.psid.length) {
                     order.date = new Date();
                     models.Order.update({info: order.info}, order, {upsert: true}, function (err, result) {
                         if (err) {
