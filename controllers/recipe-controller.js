@@ -15,7 +15,7 @@ module.exports = function (utils, models) {
                             }
                         },
                         {
-                            title: search.join(' ')
+                            title: { $regex: search.join(' '), $options: 'i'}
                         }
                     ]
                 };
@@ -28,7 +28,7 @@ module.exports = function (utils, models) {
                             }
                         },
                         {
-                            title: search.join(' ')
+                            title: { $regex: search.join(' '), $options: 'i'}
                         }
                     ]
                 };
